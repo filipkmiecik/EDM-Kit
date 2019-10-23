@@ -1,12 +1,12 @@
 document.body.addEventListener('keypress', onKeyPress)
-document.querySelector('#channel1Rec').addEventListener('click', btnChannelClick1)
-document.querySelector("#channel1Play").addEventListener("click", playChannel1)
-document.querySelector('#channel2Rec').addEventListener('click', btnChannelClick2)
-document.querySelector("#channel2Play").addEventListener("click", playChannel2)
-document.querySelector('#channel3Rec').addEventListener('click', btnChannelClick3)
-document.querySelector("#channel3Play").addEventListener("click", playChannel3)
-document.querySelector('#channel4Rec').addEventListener('click', btnChannelClick4)
-document.querySelector("#channel4Play").addEventListener("click", playChannel4)
+document.querySelector('#channel1Rec').addEventListener('click', () => btnChannelClick(channel1))
+document.querySelector("#channel1Play").addEventListener("click", () => playChannel(channel1))
+document.querySelector('#channel2Rec').addEventListener('click', () => btnChannelClick(channel2))
+document.querySelector("#channel2Play").addEventListener("click", () => playChannel(channel2))
+document.querySelector('#channel3Rec').addEventListener('click', () => btnChannelClick(channel3))
+document.querySelector("#channel3Play").addEventListener("click", () => playChannel(channel3))
+document.querySelector('#channel4Rec').addEventListener('click', () => btnChannelClick(channel4))
+document.querySelector("#channel4Play").addEventListener("click", () => playChannel(channel4))
 document.querySelector("#buttonsPlayAll").addEventListener("click", playAllChannels)
 
 function show1() {
@@ -69,39 +69,13 @@ const sounds = {
     KeyB: '#hihat6'
 }
 
-
-function playChannel1() {
-    channel1.forEach((el) => {
+function playChannel(channel) {
+    channel.forEach((el) => {
         setTimeout(() => {
             playSound(sounds[el.sound])
         }, el.time);
     })
 }
-
-function playChannel2() {
-    channel2.forEach((el) => {
-        setTimeout(() => {
-            playSound(sounds[el.sound])
-        }, el.time);
-    })
-}
-
-function playChannel3() {
-    channel3.forEach((el) => {
-        setTimeout(() => {
-            playSound(sounds[el.sound])
-        }, el.time);
-    })
-}
-
-function playChannel4() {
-    channel4.forEach((el) => {
-        setTimeout(() => {
-            playSound(sounds[el.sound])
-        }, el.time);
-    })
-}
-
 
 function onKeyPress(e) {
     playSound(sounds[e.code]);
@@ -127,29 +101,14 @@ function playSound(id) {
     audioTag.play()
 }
 
-function btnChannelClick1() {
-    channel1.length = 0
-    channelStart = Date.now()
-}
-
-function btnChannelClick2() {
-    channel2.length = 0
-    channelStart = Date.now()
-}
-
-function btnChannelClick3() {
-    channel3.length = 0
-    channelStart = Date.now()
-}
-
-function btnChannelClick4() {
-    channel4.length = 0
+function btnChannelClick(channel) {
+    channel.length = 0
     channelStart = Date.now()
 }
 
 function playAllChannels() {
-    playChannel1();
-    playChannel2();
-    playChannel3();
-    playChannel4();
+    playChannel(channel1);
+    playChannel(channel2);
+    playChannel(channel3);
+    playChannel(channel4);
 }
